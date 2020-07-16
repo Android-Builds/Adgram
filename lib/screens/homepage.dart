@@ -19,11 +19,15 @@ class _HomePageState extends State<HomePage> {
       style: optionStyle,
     ),
     Text(
-      'Index 1: Business',
+      'Index 1: List',
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'Index 1: Messages',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: Profile',
       style: optionStyle,
     ),
   ];
@@ -42,10 +46,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
-        ),
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -54,15 +55,20 @@ class _HomePageState extends State<HomePage> {
             title: Text('Home'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            title: Text('Business'),
+            icon: Icon(Icons.list),
+            title: Text('List'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('School'),
+            icon: Icon(Icons.message),
+            title: Text('Messages'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            title: Text('Profile'),
           ),
         ],
         currentIndex: _selectedIndex,
+        unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
