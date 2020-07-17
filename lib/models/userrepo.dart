@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instaAd/models/peopledata.dart';
+import 'package:instaAd/utils/variables.dart';
 
 class UserRepository {
   Future<String> authenticate({
@@ -18,9 +19,12 @@ class UserRepository {
 
   Future<void> persistToken(String token) async {
     /// write to keystore/keychain
-    getAccounts().then((value) => print(value[0].followers));
-    await Future.delayed(Duration(seconds: 3));
-    return;
+    getAccounts().then((value) {
+      allaccounts = value;
+      return;
+    });
+    // await Future.delayed(Duration(seconds: 3));
+    // return;
   }
 
   Future<bool> hasToken() async {
