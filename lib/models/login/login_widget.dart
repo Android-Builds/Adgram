@@ -93,8 +93,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   minWidth: 150.0,
                 ),
                 MaterialButton(
-                  onPressed:
-                      state is! LoginInProgress ? _onLoginButtonPressed : null,
+                  onPressed: () {},
                   child: Text('Sign Up'),
                   color: Colors.grey,
                   minWidth: 150.0,
