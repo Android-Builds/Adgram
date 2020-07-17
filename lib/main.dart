@@ -1,16 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instaAd/models/login/login_page.dart';
 import 'package:instaAd/screens/homepage.dart';
+import 'package:instaAd/screens/splashscreen.dart';
 
-void main() {
-  runApp(MyApp());
+import 'models/authentication/bloc/authentication_bloc.dart';
+import 'models/userrepo.dart';
+
+class SimpleBlocObserver extends BlocObserver {
+  @override
+  void onEvent(Bloc bloc, Object event) {
+    print(event);
+    super.onEvent(bloc, event);
+  }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    print(transition);
+    super.onTransition(bloc, transition);
+  }
+
+  @override
+  void onError(Bloc bloc, Object error, StackTrace stackTrace) {
+    print(error);
+    super.onError(bloc, error, stackTrace);
+  }
 }
 
-class MyApp extends StatelessWidget {
+void main() {
+  Bloc.observer = SimpleBlocObserver();
+  final userRepository = UserRepository();
+  runApp(
+    BlocProvider<AuthenticationBloc>(
+      create: (context) {
+        return AuthenticationBloc(userRepository: userRepository)
+          ..add(AuthenticationStarted());
+      },
+      child: App(userRepository: userRepository),
+    ),
+  );
+}
+
+class App extends StatelessWidget {
+  final UserRepository userRepository;
+
+  App({Key key, @required this.userRepository}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) {
+          if (state is AuthenticationSuccess) {
+            return HomePage();
+          }
+          if (state is AuthenticationFailure) {
+            return LoginPage(userRepository: userRepository);
+          }
+          if (state is AuthenticationInProgress) {
+            return LoadingIndicator();
+          }
+          return SplashPage();
+        },
+      ),
       theme: ThemeData.light().copyWith(
         visualDensity: VisualDensity.adaptivePlatformDensity,
         scaffoldBackgroundColor: Colors.white,
@@ -27,7 +80,13 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: HomePage(title: 'Adgram'),
     );
   }
+}
+
+class LoadingIndicator extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => Center(
+        child: CircularProgressIndicator(),
+      );
 }

@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text('Adgram'),
           centerTitle: true,
           actions: [
             IconButton(
