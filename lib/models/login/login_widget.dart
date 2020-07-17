@@ -99,6 +99,15 @@ class _LoginWidgetState extends State<LoginWidget> {
                   color: Colors.grey,
                   minWidth: 150.0,
                 ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Text(
+                  'Forgot Password ?',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
                 Container(
                   child: state is LoginInProgress
                       ? CircularProgressIndicator()
