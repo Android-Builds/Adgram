@@ -11,6 +11,8 @@ class _LoginWidgetState extends State<LoginWidget> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  bool obscure = true;
+
   @override
   Widget build(BuildContext context) {
     _onLoginButtonPressed() {
@@ -37,20 +39,65 @@ class _LoginWidgetState extends State<LoginWidget> {
         builder: (context, state) {
           return Form(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'username'),
-                  controller: _usernameController,
+                Text(
+                  'Adgram',
+                  style: TextStyle(
+                    fontSize: 50.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'password'),
-                  controller: _passwordController,
-                  obscureText: true,
+                SizedBox(
+                  height: 50,
                 ),
-                RaisedButton(
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Username',
+                      hintText: 'Enter your Username',
+                      border: OutlineInputBorder(),
+                    ),
+                    controller: _usernameController,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      hintText: 'Enter your Password',
+                      border: OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          obscure ? Icons.visibility : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            obscure = !obscure;
+                          });
+                        },
+                      ),
+                    ),
+                    controller: _passwordController,
+                    obscureText: obscure,
+                  ),
+                ),
+                MaterialButton(
                   onPressed:
                       state is! LoginInProgress ? _onLoginButtonPressed : null,
                   child: Text('Login'),
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  minWidth: 150.0,
+                ),
+                MaterialButton(
+                  onPressed:
+                      state is! LoginInProgress ? _onLoginButtonPressed : null,
+                  child: Text('Sign Up'),
+                  color: Colors.grey,
+                  minWidth: 150.0,
                 ),
                 Container(
                   child: state is LoginInProgress
