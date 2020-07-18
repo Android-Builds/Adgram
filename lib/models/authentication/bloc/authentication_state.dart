@@ -5,6 +5,8 @@ abstract class AuthenticationState extends Equatable {
   List<Object> get props => [];
 }
 
+class PreAuthenticationState extends AuthenticationState {}
+
 class AuthenticationInitial extends AuthenticationState {}
 
 class AuthenticationSuccess extends AuthenticationState {}

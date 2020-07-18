@@ -20,6 +20,10 @@ class AuthenticationBloc
   Stream<AuthenticationState> mapEventToState(
     AuthenticationEvent event,
   ) async* {
+    if (event is PreAuthentication) {
+      yield PreAuthenticationState();
+    }
+
     if (event is AuthenticationStarted) {
       final bool hasToken = await userRepository.hasToken();
 

@@ -9,6 +9,8 @@ abstract class AuthenticationEvent extends Equatable {
 
 class AuthenticationStarted extends AuthenticationEvent {}
 
+class PreAuthentication extends AuthenticationEvent {}
+
 class AuthenticationLoggedIn extends AuthenticationEvent {
   final String token;
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instaAd/models/login/login_page.dart';
+import 'package:instaAd/screens/accounselect.dart';
 import 'package:instaAd/screens/homepage.dart';
 import 'package:instaAd/screens/splashscreen.dart';
 
@@ -34,7 +35,7 @@ void main() {
     BlocProvider<AuthenticationBloc>(
       create: (context) {
         return AuthenticationBloc(userRepository: userRepository)
-          ..add(AuthenticationStarted());
+          ..add(PreAuthentication());
       },
       child: App(userRepository: userRepository),
     ),
@@ -52,6 +53,9 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
+          if (state is PreAuthenticationState) {
+            return SelectAccount();
+          }
           if (state is AuthenticationSuccess) {
             return HomePage();
           }

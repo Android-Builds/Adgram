@@ -19,11 +19,11 @@ class _HomePageState extends State<HomePage> {
     HomeList(),
     AdList(),
     Text(
-      'Index 1: Messages',
+      'Messages',
       style: optionStyle,
     ),
     Text(
-      'Index 2: Profile',
+      'Profile',
       style: optionStyle,
     ),
   ];
@@ -38,16 +38,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('Adgram'),
-        //   centerTitle: true,
-        //   actions: [
-        //     IconButton(
-        //       icon: Icon(Icons.bookmark_border),
-        //       onPressed: null,
-        //     ),
-        //   ],
-        // ),
         drawer: Drawer(),
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
