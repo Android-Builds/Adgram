@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instaAd/models/authentication/bloc/authentication_bloc.dart';
 import 'package:instaAd/utils/variables.dart';
 
 import 'cardwidgets.dart';
@@ -22,8 +24,11 @@ class _HomeListState extends State<HomeList> {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.bookmark_border),
-            onPressed: () {},
+            icon: Icon(Icons.call_missed_outgoing),
+            onPressed: () {
+              BlocProvider.of<AuthenticationBloc>(context)
+                  .add(AuthenticationLoggedOut());
+            },
           )
         ],
       ),
