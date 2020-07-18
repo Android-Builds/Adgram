@@ -13,13 +13,13 @@ class _HomeListState extends State<HomeList> {
   @override
   void initState() {
     super.initState();
-    acc = allaccounts;
+    // acc = getAccounts();
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: getAccounts(),
+      future: allaccounts,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return ListView.builder(
@@ -30,57 +30,13 @@ class _HomeListState extends State<HomeList> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                child: Container(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-                  child: Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CircleAvatar(
-                            radius: 30.0,
-                            backgroundImage:
-                                NetworkImage(snapshot.data[index].image),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(snapshot.data[index].name),
-                        ],
-                      ),
-                      Spacer(),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CardInfo(
-                            icon: Icons.photo_library,
-                            text: snapshot.data[index].posts.toString(),
-                          ),
-                          SizedBox(height: 10.0),
-                          CardInfo(
-                            icon: Icons.message,
-                            text: snapshot.data[index].messages.toString(),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 50.0),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CardInfo(
-                            icon: Icons.account_circle,
-                            text: snapshot.data[index].followers.toString(),
-                          ),
-                          SizedBox(height: 10.0),
-                          CardInfo(
-                            icon: Icons.favorite,
-                            text: snapshot.data[index].likes.toString(),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                child: DetailWidget(
+                  url: snapshot.data[index].image,
+                  name: snapshot.data[index].name,
+                  likes: snapshot.data[index].likes.toString(),
+                  followers: snapshot.data[index].followers.toString(),
+                  posts: snapshot.data[index].posts.toString(),
+                  messages: snapshot.data[index].messages.toString(),
                 ),
               );
             },
@@ -91,6 +47,79 @@ class _HomeListState extends State<HomeList> {
           );
         }
       },
+    );
+  }
+}
+
+class DetailWidget extends StatelessWidget {
+  const DetailWidget({
+    Key key,
+    @required this.likes,
+    @required this.followers,
+    @required this.messages,
+    @required this.posts,
+    @required this.url,
+    @required this.name,
+  }) : super(key: key);
+
+  final String likes;
+  final String followers;
+  final String messages;
+  final String posts;
+  final String url;
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+      child: Row(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CircleAvatar(
+                radius: 30.0,
+                backgroundImage: NetworkImage(url),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(name),
+            ],
+          ),
+          Spacer(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CardInfo(
+                icon: Icons.photo_library,
+                text: posts,
+              ),
+              SizedBox(height: 10.0),
+              CardInfo(
+                icon: Icons.message,
+                text: messages,
+              ),
+            ],
+          ),
+          SizedBox(width: 50.0),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CardInfo(
+                icon: Icons.account_circle,
+                text: followers,
+              ),
+              SizedBox(height: 10.0),
+              CardInfo(
+                icon: Icons.favorite,
+                text: likes,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -110,6 +139,7 @@ class CardInfo extends StatelessWidget {
     return Row(
       children: [
         Icon(icon),
+        SizedBox(width: 10.0),
         Text(text),
       ],
     );
