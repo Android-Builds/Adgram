@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instaAd/models/peopledata.dart';
 import 'package:instaAd/utils/variables.dart';
 
 class HomeList extends StatefulWidget {
@@ -12,19 +13,76 @@ class _HomeListState extends State<HomeList> {
   @override
   void initState() {
     super.initState();
-    allaccounts = acc;
+    acc = allaccounts;
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: acc,
+      future: getAccounts(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return ListView.builder(
-            itemCount: allaccounts.length,
+            itemCount: snapshot.data.length,
             itemBuilder: (context, index) {
-              return Text(allaccounts[index].name);
+              return Card(
+                margin: EdgeInsets.all(10.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Container(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CircleAvatar(
+                            radius: 30.0,
+                            backgroundImage:
+                                NetworkImage(snapshot.data[index].image),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(snapshot.data[index].name),
+                        ],
+                      ),
+                      Spacer(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CardInfo(
+                            icon: Icons.photo_library,
+                            text: snapshot.data[index].posts.toString(),
+                          ),
+                          SizedBox(height: 10.0),
+                          CardInfo(
+                            icon: Icons.message,
+                            text: snapshot.data[index].messages.toString(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 50.0),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CardInfo(
+                            icon: Icons.account_circle,
+                            text: snapshot.data[index].followers.toString(),
+                          ),
+                          SizedBox(height: 10.0),
+                          CardInfo(
+                            icon: Icons.favorite,
+                            text: snapshot.data[index].likes.toString(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
             },
           );
         } else {
@@ -34,11 +92,26 @@ class _HomeListState extends State<HomeList> {
         }
       },
     );
-    // return ListView.builder(
-    //   itemCount: allaccounts.length,
-    //   itemBuilder: (context, index) {
-    //     return Text(allaccounts[index].name);
-    //   },
-    // );
+  }
+}
+
+class CardInfo extends StatelessWidget {
+  const CardInfo({
+    Key key,
+    @required this.icon,
+    @required this.text,
+  }) : super(key: key);
+
+  final icon;
+  final text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(icon),
+        Text(text),
+      ],
+    );
   }
 }
