@@ -1,17 +1,7 @@
-# instaAd
+Adgram
 
-A new Flutter project.
+Instagram Ad Network App.
 
-## Getting Started
+This is a demo app of how the final product may look like. The app consists of a few screens and fetches a list of dummy data from https://randomuser.me/api to mimic a list of accounts the advertiser would be registered with. Another set of dummy data is being used from the same link to geberate a list of advertisements that the advertisers might publish. You'll find a selection screen at the start of the app to select between the roles of an Influencer and an advertiser. On clicking the advertiser, you'd be presented with a login screen which when logged in will take you to the home screen which contains the list of dummy datas. UI is made as close to the image provided as possible.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-"# instaad" 
+Find the apk here :
