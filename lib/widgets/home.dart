@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instaAd/models/authentication/bloc/authentication_bloc.dart';
-import 'package:instaAd/utils/constants.dart';
 import 'package:instaAd/utils/variables.dart';
 
 import 'cardwidgets.dart';

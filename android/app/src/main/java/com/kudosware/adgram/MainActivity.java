@@ -1,4 +1,4 @@
-package com.kudosware.instaAd;
+package com.kudosware.adgram;
 
 import io.flutter.embedding.android.FlutterActivity;
 
