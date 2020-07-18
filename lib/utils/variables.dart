@@ -1,1 +1,2 @@
-var allaccounts;
+var mainaccounts;
+var adaccounts;

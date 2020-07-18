@@ -43,14 +43,25 @@ class Account {
   }
 }
 
-List<Account> accounts = List<Account>();
+List<Account> mainAccounts = List<Account>();
+List<Account> adAccounts = List<Account>();
 
-Future<List<Account>> getAccounts() async {
+Future<List<Account>> getAdAccounts() async {
   for (int i = 0; i < random.nextInt(10); i++) {
     final response = await http.get(api);
     var responseJson = json.decode(response.body);
     responseJson = responseJson['results'][0];
-    accounts.add(Account.fromJson(responseJson));
+    mainAccounts.add(Account.fromJson(responseJson));
   }
-  return accounts;
+  return mainAccounts;
+}
+
+Future<List<Account>> getMainAccounts() async {
+  for (int i = 0; i < random.nextInt(10); i++) {
+    final response = await http.get(api);
+    var responseJson = json.decode(response.body);
+    responseJson = responseJson['results'][0];
+    adAccounts.add(Account.fromJson(responseJson));
+  }
+  return adAccounts;
 }

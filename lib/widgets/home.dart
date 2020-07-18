@@ -17,7 +17,7 @@ class _HomeListState extends State<HomeList> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: allaccounts,
+      future: mainaccounts,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return ListView.builder(

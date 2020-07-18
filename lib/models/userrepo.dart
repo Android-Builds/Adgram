@@ -19,7 +19,8 @@ class UserRepository {
 
   Future<void> persistToken(String token) async {
     /// write to keystore/keychain
-    allaccounts = getAccounts();
+    mainaccounts = getMainAccounts();
+    adaccounts = getAdAccounts();
     await Future.delayed(Duration(seconds: 1));
     return;
   }
