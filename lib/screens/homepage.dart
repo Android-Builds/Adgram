@@ -38,16 +38,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Adgram'),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.bookmark_border),
-              onPressed: null,
-            ),
-          ],
-        ),
+        // appBar: AppBar(
+        //   title: Text('Adgram'),
+        //   centerTitle: true,
+        //   actions: [
+        //     IconButton(
+        //       icon: Icon(Icons.bookmark_border),
+        //       onPressed: null,
+        //     ),
+        //   ],
+        // ),
         drawer: Drawer(),
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
