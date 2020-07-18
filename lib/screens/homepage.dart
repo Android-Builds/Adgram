@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instaAd/widgets/adpage.dart';
 import 'package:instaAd/widgets/home.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,10 +17,7 @@ class _HomePageState extends State<HomePage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     HomeList(),
-    Text(
-      'Index 1: List',
-      style: optionStyle,
-    ),
+    AdList(),
     Text(
       'Index 1: Messages',
       style: optionStyle,
