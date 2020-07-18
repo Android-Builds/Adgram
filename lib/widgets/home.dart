@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instaAd/models/authentication/bloc/authentication_bloc.dart';
+import 'package:instaAd/utils/constants.dart';
 import 'package:instaAd/utils/variables.dart';
 
 import 'cardwidgets.dart';
@@ -40,6 +41,7 @@ class _HomeListState extends State<HomeList> {
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
                 return Card(
+                  elevation: 5.0,
                   margin: EdgeInsets.all(10.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),

@@ -71,6 +71,7 @@ class _AdListState extends State<AdList> {
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
                 return Card(
+                  elevation: 5.0,
                   margin: EdgeInsets.all(10.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
