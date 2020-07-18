@@ -52,7 +52,8 @@ class DetailWidget extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(width: 50.0),
+          Spacer(),
+          // SizedBox(width: 50.0),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
